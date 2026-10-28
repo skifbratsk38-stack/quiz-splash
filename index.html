@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06142d">
+<title>Трудоустройство без иллюзий — областной онлайн-квиз</title>
+<style>
+:root{color-scheme:dark;--navy:#06142d;--navy2:#0a2450;--blue:#1769d2;--cyan:#21d9ff;--mint:#55f2df;--muted:#a9bdd9}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--navy)}
+body{margin:0;min-height:100vh;min-height:100svh;display:grid;place-items:center;overflow-x:hidden;padding:clamp(16px,3vw,36px);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#f7fbff;background:radial-gradient(ellipse at 50% 26%,#123a72 0%,#0a2450 24%,#06142d 61%,#030a18 100%);position:relative;isolation:isolate}
+body:before,body:after{content:"";position:fixed;z-index:-1;pointer-events:none}
+body:before{inset:0;background:linear-gradient(132deg,transparent 0 15%,#1268d01b 15.2% 15.7%,transparent 16% 78%,#1bcdf31b 78.2% 78.7%,transparent 79%),radial-gradient(circle at 8% 75%,#0878ed33 0 2px,transparent 3px),radial-gradient(circle at 90% 20%,#21d9ff33 0 2px,transparent 3px)}
+body:after{width:min(92vw,800px);aspect-ratio:1;border:1px solid #1d83e53b;border-radius:50%;left:50%;top:25%;transform:translate(-50%,-50%);box-shadow:0 0 0 24px #0d6ac20a,0 0 0 52px #0d6ac20a,0 0 100px #006aff16}
+main{width:min(100%,880px);text-align:center;padding:clamp(20px,4vw,42px) clamp(14px,3vw,30px);position:relative}
+.logo-orbit{width:min(68vw, min(390px, 42vh));width:min(68vw,390px);aspect-ratio:1;position:relative;margin:0 auto clamp(22px,4vh,34px);display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#0b2b5b 0%,#071a39 67%,#06142d 100%);border:2px solid #52dfff;box-shadow:0 0 0 5px #0b4da5aa,0 0 0 12px #1378e52b,0 0 32px #06baff70,inset 0 0 28px #1479dc33;isolation:isolate}
+.logo-orbit:before{content:"";position:absolute;inset:-19px;border-radius:50%;border:1px dashed #20baff91;animation:orbit 26s linear infinite}
+.logo-orbit:after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid #5fdfff7d;clip-path:polygon(0 0,100% 0,100% 38%,95% 38%,95% 62%,100% 62%,100% 100%,0 100%,0 70%,5% 70%,5% 30%,0 30%);pointer-events:none}
+.logo{display:block;width:91%;height:91%;object-fit:cover;border-radius:50%;border:1px solid #d5f7ff;box-shadow:0 0 22px #0b76e4a8}
+.eyebrow{font-size:clamp(11px,1.5vw,14px);font-weight:850;letter-spacing:.25em;color:var(--mint);text-transform:uppercase;margin:0 auto 12px}
+h1{font-size:clamp(30px,6.2vw,66px);font-weight:900;line-height:1.02;letter-spacing:-.045em;margin:0 auto;max-width:900px;text-transform:uppercase;text-shadow:0 4px 26px #007eff24}
+h1 span{display:block;margin-top:10px;color:#eaf5ff;font-size:.48em;line-height:1.25;letter-spacing:.025em}
+.subtitle{margin:14px auto 0;color:#a8d9ff;font-size:clamp(15px,2vw,19px);letter-spacing:.045em}
+.status{display:flex;justify-content:center;align-items:center;gap:11px;margin:clamp(25px,4vh,38px) auto 15px;color:#dceeff;font-size:clamp(13px,1.7vw,16px);letter-spacing:.06em}.spinner{width:18px;height:18px;flex:0 0 auto;border:2px solid #2b5987;border-top-color:var(--cyan);border-right-color:var(--mint);border-radius:50%;animation:spin .9s linear infinite;filter:drop-shadow(0 0 5px #00cfff66)}
+.track{height:8px;width:min(100%,520px);margin:0 auto;background:#0a1e3c;border:1px solid #3975b6;border-radius:20px;overflow:hidden;box-shadow:0 0 18px #006bdb20}.track span{display:block;width:34%;height:100%;border-radius:20px;background:linear-gradient(90deg,#14c8ff,#51f4df,#1788ff);box-shadow:0 0 12px #12caff;animation:move 2.2s ease-in-out infinite alternate}
+.note{font-size:clamp(12px,1.5vw,14px);color:var(--muted);line-height:1.65;margin:16px auto 0;max-width:560px}.actions{margin-top:23px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border:1px solid #65f5ff;border-radius:12px;padding:13px 24px;background:linear-gradient(100deg,#0f8fdf,#1dd9d2);color:#03152c;font-weight:850;font-size:15px;text-decoration:none;box-shadow:0 0 22px #0aa5e73d;transition:transform .15s,filter .15s,box-shadow .15s}.btn:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 0 28px #0aa5e766}.btn:focus-visible{outline:3px solid white;outline-offset:4px}.foot{margin-top:26px;color:#6f91bb;font-size:10px;letter-spacing:.2em}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes move{from{transform:translateX(-10%)}to{transform:translateX(205%)}}@keyframes orbit{to{transform:rotate(360deg)}}
+@media(max-height:720px){main{padding-top:10px;padding-bottom:10px}.logo-orbit{width:min(46vh,300px);margin-bottom:18px}.status{margin-top:20px}.foot{margin-top:16px}}
+@media(max-width:480px){body{padding:10px}.logo-orbit{width:min(72vw,300px)}.eyebrow{letter-spacing:.16em}h1{font-size:clamp(28px,8vw,42px)}h1 span{font-size:.5em}.foot{letter-spacing:.12em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo-orbit"><img class="logo" src="logo.png" alt="Логотип БрПК и квиза «Трудоустройство без иллюзий: проверь свою готовность»"></div>
+  <div class="eyebrow">Областной онлайн-квиз</div>
+  <h1>Трудоустройство <span>Без иллюзий: проверь свою готовность</span></h1>
+  <p class="subtitle">Профессия · Навыки · Твой следующий шаг</p>
+  <div class="status"><span class="spinner" aria-hidden="true"></span><span id="statusText">Подготавливаем площадку…</span></div>
+  <div class="track" aria-hidden="true"><span></span></div>
+  <p class="note" id="noteText">Пожалуйста, подождите. Скоро начнём! Если сервер просыпается после простоя, это может занять до минуты.</p>
+  <div class="actions"><a class="btn" id="enterBtn" href="https://trudoustroystvo-kviz.onrender.com" target="_blank" rel="noopener">Перейти к квизу ↗</a></div>
+  <div class="foot">БРАТСКИЙ ПОЛИТЕХНИЧЕСКИЙ КОЛЛЕДЖ</div>
+</main>
+<script>
+// Static splash page: does not modify or depend on the quiz server. The link always remains available.
+const appUrl='https://trudoustroystvo-kviz.onrender.com';
+const statusText=document.getElementById('statusText');
+const noteText=document.getElementById('noteText');
+let seconds=0;
+setInterval(()=>{seconds++;if(seconds<25){statusText.textContent='Подготавливаем площадку…';}else if(seconds<60){statusText.textContent='Сервер запускается, пожалуйста, подождите…';noteText.textContent='Бесплатный сервер может просыпаться до минуты. Кнопка перехода уже доступна.';}else{statusText.textContent='Площадка готова к открытию';noteText.textContent='Нажми кнопку, чтобы перейти к квизу. Если сервер ещё запускается, подожди немного и обнови страницу квиза.';}},1000);
+</script>
+</body>
+</html>
