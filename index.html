@@ -42,51 +42,35 @@ h1 span{display:block;margin-top:10px;color:#eaf5ff;font-size:.48em;line-height:
   <p class="note" id="noteText">Пожалуйста, подождите. Мы автоматически откроем квиз, как только сервер будет готов. Это может занять до минуты.</p>
   <div class="foot">БРАТСКИЙ ПОЛИТЕХНИЧЕСКИЙ КОЛЛЕДЖ</div>
 </main>
+
 <script>
-const appUrl = 'https://trudoustroystvo-kviz.onrender.com';
+const appUrl = 'https://trudoustroystuvo-kviz.onrender.com';
 
 const statusText = document.getElementById('statusText');
 const noteText = document.getElementById('noteText');
 
-let seconds = 0;
-let redirecting = false;
+statusText.textContent = 'Подготавливаем площадку…';
+noteText.textContent =
+  'Ожидаем запуск сервера Render. Пожалуйста, подождите.';
 
-async function checkQuizReady() {
-  if (redirecting) return;
-
-  seconds += 4;
-
-  statusText.textContent = seconds < 25
-    ? 'Подготавливаем площадку…'
-    : 'Сервер запускается, пожалуйста, подождите…';
-
-  if (seconds >= 25) {
-    noteText.textContent =
-      'Render запускает сервер. Не закрывайте эту страницу.';
-  }
+async function openQuiz() {
+  statusText.textContent = 'Запускаем сервер квиза…';
 
   try {
     await fetch(appUrl, {
-      method: 'GET',
       mode: 'no-cors',
       cache: 'no-store'
     });
-
-    redirecting = true;
-
-    statusText.textContent = 'Площадка готова! Открываем квиз…';
-    noteText.textContent =
-      'Сейчас вы автоматически перейдёте на страницу квиза.';
-
-    window.location.replace(appUrl);
-    return;
-
-  } catch (error) {
-    setTimeout(checkQuizReady, 4000);
+  } catch (e) {
+    // Даже при сетевой ошибке открываем квиз
   }
+
+  statusText.textContent = 'Открываем квиз…';
+  window.location.replace(appUrl);
 }
 
-checkQuizReady();
+openQuiz();
 </script>
+
 </body>
 </html>
