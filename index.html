@@ -44,38 +44,48 @@ h1 span{display:block;margin-top:10px;color:#eaf5ff;font-size:.48em;line-height:
 </main>
 <script>
 const appUrl = 'https://trudoustroystvo-kviz.onrender.com';
-const healthUrl = appUrl + '/healthz';
+
 const statusText = document.getElementById('statusText');
 const noteText = document.getElementById('noteText');
+
 let seconds = 0;
 let redirecting = false;
 
 async function checkQuizReady() {
   if (redirecting) return;
+
   seconds += 4;
+
   statusText.textContent = seconds < 25
     ? 'Подготавливаем площадку…'
     : 'Сервер запускается, пожалуйста, подождите…';
+
   if (seconds >= 25) {
-    noteText.textContent = 'Проверяем готовность сервера автоматически. Не закрывайте эту страницу.';
+    noteText.textContent =
+      'Render запускает сервер. Не закрывайте эту страницу.';
   }
+
   try {
-    const response = await fetch(healthUrl, { method: 'GET', mode: 'cors', cache: 'no-store' });
-    if (response.ok) {
-      const data = await response.json();
-      if (data && data.ok === true) {
-        redirecting = true;
-        statusText.textContent = 'Площадка готова! Открываем квиз…';
-        noteText.textContent = 'Сейчас вы автоматически перейдёте на страницу квиза.';
-        window.location.replace(appUrl);
-        return;
-      }
-    }
-  } catch (_) {
-    // Пока Render запускает сервер, запрос может завершиться ошибкой. Повторим проверку.
+    await fetch(appUrl, {
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-store'
+    });
+
+    redirecting = true;
+
+    statusText.textContent = 'Площадка готова! Открываем квиз…';
+    noteText.textContent =
+      'Сейчас вы автоматически перейдёте на страницу квиза.';
+
+    window.location.replace(appUrl);
+    return;
+
+  } catch (error) {
+    setTimeout(checkQuizReady, 4000);
   }
-  window.setTimeout(checkQuizReady, 4000);
 }
+
 checkQuizReady();
 </script>
 </body>
